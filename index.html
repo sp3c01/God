@@ -3,14 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema Solar</title>
+<title>Netflixo</title>
 <style>
   body {
     margin: 0;
     overflow: hidden;
-    background-color: #000; /* Fundo preto */
-    color: #0f0; /* Cor do texto verde */
     font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal */
+  }
+
+  #gif-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Coloque atrás de tudo, incluindo o universo */
+    background-image: url('https://images.hdqwalls.com/download/anonymous-hacker-chronicles-xg-1366x768.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8; /* Ajuste a opacidade conforme desejado */
   }
 
   #sidebar {
@@ -24,8 +35,8 @@
     color: #0f0; /* Cor do texto verde */
     overflow-y: auto; /* Adicionado rolagem vertical se necessário */
     transition: left 0.3s; /* Adicionado transição suave para abrir/fechar */
-    z-index: 2; /* Colocado acima do universo */
-    border-right: 2px solid #f0f; /* Adicionado uma borda direita roxa */
+    z-index: 1; /* Colocado abaixo do botão */
+    border-right: 2px solid #f00f; /* Adicionado uma borda direita roxa */
     border-top-right-radius: 15px; /* Borda superior direita arredondada */
     border-bottom-right-radius: 15px; /* Borda inferior direita arredondada */
   }
@@ -62,7 +73,7 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%) scale(0);
-    width: 100%;
+    max-width: 90%; /* Definindo uma largura máxima */
     text-align: center;
     margin: 0;
     padding: 10px 0;
@@ -91,20 +102,6 @@
     z-index: 2; /* Sol fica na frente das estrelas */
     box-shadow: 0 0 50px 10px yellow;
     cursor: pointer; /* Adicionado cursor pointer para indicar clicabilidade */
-  }
-
-  .estrela {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    background: white;
-    box-shadow: 0 0 2px #fff;
-    animation: brilho 2s infinite alternate;
-    z-index: 1; /* Estrelas ficam no fundo */
-  }
-  @keyframes brilho {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
   }
 
   /* Estilo do botão de abrir PDF */
@@ -149,16 +146,21 @@
 </head>
 <body>
 
+<!-- Div para conter o GIF de fundo -->
+<div id="gif-background"></div>
+
 <div id="sidebar">
-  <div class="pdf-item" onclick="openPDF('https://drive.google.com/file/d/0B7ziz9lm-FpxTEVHN2k5djFISEE/view?usp=drivesdk&resourcekey=0-tsA2TS-owAuV6YETSPRnNw', 'A bíblia, o livro de Deus')">A bíblia, o livro de Deus</div>
-  <div class="pdf-item" onclick="openPDF('https://drive.google.com/drive/folders/0B-Ee5JqBxJErfjVpYXFiS1k5R2d3UEJjQ0pjSE9IVmppT3h6SnRINlFDNDh5M2FubDRvZFU?resourcekey=0-t_MZwj4zXzmVaanqyh0-ug', 'Cristão - Filmes e estudo bíblico')">Cristão - Filmes e estudo bíblico</div>
+  <div class="pdf-item" onclick="openPDF('https://drive.google.com/file/d/1R17Lct03P4EbustwpSxiuJZ2W2LZMXeF/view?usp=drivesdk', 'Interestelar')">Interestelar</div>
+  <div class="pdf-item" onclick="openPDF('https://drive.google.com/file/d/1AN5OQ0491ylZj5Oa3P5BN_REz0iQWhSe/view?usp=drivesdk', 'Gente Grande 1')">Gente Grande 1</div>
+  <div class="pdf-item" onclick="openPDF('https://drive.google.com/file/d/1m6BP01uAbKqjEk7hEXXv6fH81S1o055l/view?usp=drivesdk', 'Gente Grande 2')">Gente Grande 2</div>
+  <div class="pdf-item" onclick="openPDF('https://drive.google.com/file/d/1QXGOnBM9rIA_1TXfvrzfcENuDwy4q5rI/view?usp=drivesdk', 'Minha Mãe É Uma Peça')">Minha Mãe É Uma Peça 1</div>
+   <div class="pdf-item" onclick="openPDF('https://drive.google.com/file/d/1K-N6Fq2-aajSOd0PjOPKcG4RnPGZyVyZ/view?usp=drivesdk', 'Maze Runner 1,2,3')">Maze Runner 1</div>
+  <div class="pdf-item" onclick="openPDF('', 'Breve')">Em breve...</div>
 </div>
+<div id="universo"><h1><span class="codigo">@chico</span></h1> <!-- Título adicionado aqui -->
+  </div>
 
-<div id="universo">
-  <h1><span class="codigo">SP3C</span></h1> <!-- Título adicionado aqui -->
-</div>
-
-<button id="open-pdf-btn" onclick="toggleSidebar()"><i class="fas fa-cross"></i></button>
+<button id="open-pdf-btn" onclick="toggleSidebar()"><i class="fas fa-radiation"></i></button>
 
 <script>
   // Função para abrir ou fechar a aba lateral
@@ -171,7 +173,8 @@
   function openPDF(url, title) {
     window.open(url, '_blank');
   }
-// Cria estrel// Cria estrelas no fundo
+
+  // Cria estrelas no fundo
   for (let i = 0; i < 200; i++) {
     let estrela = document.createElement('div');
     estrela.className = 'estrela';
